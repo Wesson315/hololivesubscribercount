@@ -3,7 +3,7 @@
 
 
 The frontend of this website is written with <a href="https://angular.io/">Angular</a> in Typescript<br>
-The backend is a <a href="https://spring.io">Spring web server</a> <br>.
+The backend is a <a href="https://spring.io">Spring web server</a>. <br>
 It currently tracks 42 Hololive members, called "Talents".<br>
 The storage is realized through a file based <a href="https://www.h2database.com/html/main.html">H2-Database</a>
 
