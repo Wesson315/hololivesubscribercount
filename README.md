@@ -22,7 +22,7 @@ Hololive-EN - The English branch<br>
 
 ##### Currently Missing
 
-**Hololive-CH** - No members of the chinese branch, except for Civia, are currently being tracked due to them exclusively broadcasting on <a href="https://www.billibilli.com">billibilli</a>.<br>
+**Hololive-CH** - No members of the chinese branch, except for Civia, are currently being tracked due to them exclusively broadcasting on <a href="https://www.bilibili.com">bilibili</a>.<br>
 
 **Holostars** - The japanese male branch of Hololive, called "Holostars", is currently not being tracked. This is due to my laziness and will be addressed in the near future! **(That does not mean that I don't like these guys, seriously check them out!!)**<br>
 
