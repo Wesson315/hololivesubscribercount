@@ -30,7 +30,7 @@ Hololive-EN - The English branch<br>
 This is my very first angular and spring project, and my first publicly available web project.<br>
 That means that bugs, errors, bad design, and other are to be expected.<br>
 In general, this project is a learning experience for me.<br>
-If you have found any bugs, have suggestions or want to get in contact with me regarding this project, feel free 
+If you have found any bugs, have suggestions or want to get in contact with me regarding this project, feel free to contact me.
 
 
 
