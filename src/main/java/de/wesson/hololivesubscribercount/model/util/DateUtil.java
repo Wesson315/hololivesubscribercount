@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.slf4j.LoggerFactory;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,11 +17,11 @@ public final class DateUtil {
     private static final SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
     private static final SimpleDateFormat rfc = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
     public static String formatRFC3339(String rfc3339Time){
+        if(rfc3339Time == null)return "At some point";
         try {
-
             Date d = rfc.parse(rfc3339Time);
             return format.format(d);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             LoggerFactory.getLogger(DateUtil.class).error("Failed to parse date '"+rfc3339Time+"'",e);
         }
         return "Null";

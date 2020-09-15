@@ -3,16 +3,19 @@ package de.wesson.hololivesubscribercount.controller;
 import de.wesson.hololivesubscribercount.model.hololive.HololiveTalent;
 import de.wesson.hololivesubscribercount.repository.HololiveChannelRespository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileInputStream;
 import java.util.List;
 /* {"https://hololivecounter.web.app/","https://hololivecounter.firebaseapp.com/","https://hololivecounter.web.app","https://hololivecounter.firebaseapp.com", "http://localhost:4200/","http://localhost:4200"}*/
 /**
  * @author Philip Anderson
  **/
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class TalentController {
 
     @Autowired
@@ -44,6 +47,18 @@ public class TalentController {
     @GetMapping("/getTalentCount")
     public long getTalentCount(){
         return repository.count();
+    }
+
+    @GetMapping(value = "/data/avatars/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
+    @Cacheable("image")
+    public byte[] getAvatar(@PathVariable(name="fileName") String fileName){
+        try {
+            FileInputStream stream = new FileInputStream("data/avatars/"+fileName);
+            return stream.readAllBytes();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new byte[0];
     }
 
 

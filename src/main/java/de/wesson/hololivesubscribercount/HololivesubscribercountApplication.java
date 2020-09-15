@@ -13,6 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
+
 @SpringBootApplication
 @PropertySource(value = "classpath:/application.properties")
 public class HololivesubscribercountApplication implements CommandLineRunner {
@@ -28,28 +34,39 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
     public static void main(String[] args) {
 
 
-
         SpringApplication.run(HololivesubscribercountApplication.class, args);
+
+
+
+
 
     }
 
 
     @Override
-    public void run(String... args){
+    public void run(String... args) {
+        YoutubeAPI api = new YoutubeAPI();
         Logger logger = LoggerFactory.getLogger(HololivesubscribercountApplication.class);
+
+        // Fetches all thumbnails and writes them to disk, so we dont need to bother youtube all the time.
+        //getAllThumbnails(api, logger);
+
+
         apiKey = env.getProperty("user.apikey");
         logger.info("Starting CronoManager");
         try {
-            CronoManager.getInstance().startScheduler(this.controller);
+
+                CronoManager.getInstance().startScheduler(this.controller);
         } catch (Exception e) {
             logger.error("Error starting Cronomanager!", e);
             System.exit(1);
         }
-        YoutubeAPI api = new YoutubeAPI();
+
         try {
             logger.info("Making a test talent to see if api works (Using Best girl for this test)...");
             HololiveTalent takanashiKiara = new HololiveTalent("UCHsx4Hqa-1ORjQTh9TYDhww", "Takanashi Kiara Ch. hololive-EN", "Takanashi Kiara");
             api.updateTalent(takanashiKiara);
+            logger.info("Talent: " + takanashiKiara);
         } catch (Exception e) {
             logger.error("API FAILED! CANNOT START", e);
             System.exit(2);
@@ -133,7 +150,7 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
 
                 for (HololiveTalent talent : HololiveTalent.talents) {
                     api.updateTalent(talent);
-                    System.out.println(talent);
+                    logger.info(talent.toString());
                     controller.addOrUpdateTalent(talent);
                 }
             } else {
@@ -150,7 +167,38 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
 
     }
 
-
+    private void getAllThumbnails(YoutubeAPI api, Logger logger) {
+        try {
+            for (HololiveTalent talent : controller.getAllTalents()) {
+                logger.info("Getting avatar for talent " + talent.getIdolName());
+                logger.info("Thumbnail URL: " + talent.getThumbnailID());
+                URL url = new URL(talent.getThumbnailID());
+                InputStream in = new BufferedInputStream(url.openStream());
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                int n = 0;
+                while (-1!=(n=in.read(buf)))
+                {
+                    out.write(buf, 0, n);
+                }
+                out.close();
+                in.close();
+                byte[] response = out.toByteArray();
+                String thumbnailPath = api.getThumbnailPath(talent.getChannelID());
+                logger.info("Saving thumbnail to file: " +thumbnailPath);
+                FileOutputStream fos = new FileOutputStream(thumbnailPath);
+                fos.write(response);
+                fos.flush();
+                fos.close();
+                logger.info("Done, setting talents path to file and sleeping 100 ms to not get rate limited lmao");
+                talent.setThumbnailID(thumbnailPath);
+                controller.addOrUpdateTalent(talent);
+                Thread.sleep(100);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
     public static String getApiKey() {

@@ -1,0 +1,21 @@
+    WX0000KXNNW                         
+    N000000000KKXNWW                    
+   WX0OOOOOO000000KKXXNWW               
+   WX0OOOOOOOOOOOO000000KXNNW           
+   WX0OOOOOOOOOOOOOOOO000000KXXNWW      
+   WX0OOOOOOOOOOOOOOOOOOOOO00000KKXNWW  
+   WX0OOOOOOOOOOOOOOOOOOOOOOOOO000000XW 
+   WX0OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO00N 
+   WX0OOOOOOOOOOOOOOOOOOOOOOOOOOOOO0KXW 
+   WX0OOOOOOOOOOOOOOOOOOOOOOOO000KXXXKN 
+   WX0OOOOOOOOOOOOOOOOOOOO000KXXXK0OkkXW #     #
+   WX0OOOOOOOOOOOOOOOO00KKXXKK0OkxxxxxK  #     #  ####  #       ####  #      # #    # #####
+   WX0OOOOOOOOOOO00KKKXXKK0OkxxxxxdddxK  #     # #    # #      #    # #      # #    # #
+   WX0OOOOOOO00KKXXKKK0OkxxxxxddddoodkX  ####### #    # #      #    # #      # #    # #####
+   NK00000KKXXKK0Okxxxxxxddddoodxk0KN    #     # #    # #      #    # #      # #    # #
+   WNKXXXXXK0OOkxxxxxxddddoodxO0XNW      #     # #    # #      #    # #      #  #  #  #
+   WKOO00OkkxxxxddddddoodxO0XNW          #     #  ####  ######  ####  ###### #   ##   #####
+   WKxxxxxxxxdddooodxxO0XNW
+   WKxddddddooddkO0XNWW                 
+    XxdooodxkOKXWW                      
+    WKxddxOKNW                          

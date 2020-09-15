@@ -38,3 +38,4 @@ build/
 ### USER ###
 src/main/resources/keystore.p12
 data
+logs/
