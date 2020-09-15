@@ -3,7 +3,7 @@
 
 
 The frontend of this website is written with <a href="https://angular.io/">Angular</a> in Typescript<br>
-The backend is a <a href="https://spring.io">Spring web server</a> <br>.
+The backend is a <a href="https://spring.io">Spring web server</a>. <br>
 It currently tracks 42 Hololive members, called "Talents".<br>
 The storage is realized through a file based <a href="https://www.h2database.com/html/main.html">H2-Database</a>
 
@@ -22,7 +22,7 @@ Hololive-EN - The English branch<br>
 
 ##### Currently Missing
 
-**Hololive-CH** - No members of the chinese branch, except for Civia, are currently being tracked due to them exclusively broadcasting on <a href="https://www.billibilli.com">billibilli</a>.<br>
+**Hololive-CH** - No members of the chinese branch, except for Civia, are currently being tracked due to them exclusively broadcasting on <a href="https://www.bilibili.com">bilibili</a>.<br>
 
 **Holostars** - The japanese male branch of Hololive, called "Holostars", is currently not being tracked. This is due to my laziness and will be addressed in the near future! **(That does not mean that I don't like these guys, seriously check them out!!)**<br>
 
@@ -30,7 +30,7 @@ Hololive-EN - The English branch<br>
 This is my very first angular and spring project, and my first publicly available web project.<br>
 That means that bugs, errors, bad design, and other are to be expected.<br>
 In general, this project is a learning experience for me.<br>
-If you have found any bugs, have suggestions or want to get in contact with me regarding this project, feel free 
+If you have found any bugs, have suggestions or want to get in contact with me regarding this project, feel free to contact me.
 
 
 
