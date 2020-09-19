@@ -1,5 +1,6 @@
 package de.wesson.hololivesubscribercount.model.timer.runnables;
 
+import de.wesson.hololivesubscribercount.controller.SnapshotController;
 import de.wesson.hololivesubscribercount.controller.TalentController;
 import de.wesson.hololivesubscribercount.model.hololive.HololiveTalent;
 import de.wesson.hololivesubscribercount.model.youtube.YoutubeAPI;
@@ -13,16 +14,18 @@ import java.util.concurrent.Executors;
 public class MetadataRefresh implements Runnable {
 
 
-    private TalentController controller;
+    private TalentController talentController;
+    private SnapshotController snapshotController;
     private Logger logger = LoggerFactory.getLogger(MetadataRefresh.class);
-    public MetadataRefresh(TalentController controller) {
-        this.controller = controller;
+    public MetadataRefresh(TalentController talentController, SnapshotController snapshotController) {
+        this.talentController = talentController;
+        this.snapshotController = snapshotController;
     }
 
     @Override
     public void run() {
         logger.info("Refreshing subscriber count");
-        List<HololiveTalent> allTalents = controller.getAllTalents();
+        List<HololiveTalent> allTalents = talentController.getAllTalents();
         ExecutorService ex = Executors.newCachedThreadPool();
         for (HololiveTalent talent : allTalents) {
             ex.submit(getTask(talent));
@@ -37,6 +40,8 @@ public class MetadataRefresh implements Runnable {
         return () -> {
             try {
                 new YoutubeAPI().updateTalent(talent);
+                talentController.addOrUpdateTalent(talent);
+                snapshotController.takeSnapshot(talent);
                 logger.debug(String.format("Updated Talent %s", talent.getIdolName()));
             } catch (Exception e) {
                 e.printStackTrace();

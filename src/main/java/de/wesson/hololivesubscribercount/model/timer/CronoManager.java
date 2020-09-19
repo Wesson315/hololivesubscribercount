@@ -1,5 +1,6 @@
 package de.wesson.hololivesubscribercount.model.timer;
 
+import de.wesson.hololivesubscribercount.controller.SnapshotController;
 import de.wesson.hololivesubscribercount.controller.TalentController;
 import de.wesson.hololivesubscribercount.model.timer.runnables.MetadataRefresh;
 import it.sauronsoftware.cron4j.Scheduler;
@@ -30,7 +31,7 @@ public class CronoManager {
      * The sub cound scheduler starts evers 20 minutes
      * The Metadatascheduler starts every day once at midnight GMT+1
      */
-    public void startScheduler(TalentController controller) {
+    public void startScheduler(TalentController controller, SnapshotController snapshotController) {
         logger.info("Starting Crono Schedulers!");
         if (subcountScheduler == null && metaScheduler == null) {
             // Sub Counter
@@ -40,7 +41,7 @@ public class CronoManager {
 
             logger.info("Pattern for Subscriber Crono: " + subCronoString);
 
-            subcountScheduler.schedule(subCronoString, new MetadataRefresh(controller));
+            subcountScheduler.schedule(subCronoString, new MetadataRefresh(controller, snapshotController));
             subcountScheduler.start();
 /*
             // Metadata Counter

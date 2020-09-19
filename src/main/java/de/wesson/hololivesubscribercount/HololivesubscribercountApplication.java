@@ -1,5 +1,6 @@
 package de.wesson.hololivesubscribercount;
 
+import de.wesson.hololivesubscribercount.controller.SnapshotController;
 import de.wesson.hololivesubscribercount.controller.TalentController;
 import de.wesson.hololivesubscribercount.model.hololive.HololiveTalent;
 import de.wesson.hololivesubscribercount.model.timer.CronoManager;
@@ -24,7 +25,10 @@ import java.net.URL;
 public class HololivesubscribercountApplication implements CommandLineRunner {
 
     @Autowired
-    private TalentController controller;
+    private TalentController talentController;
+
+    @Autowired
+    private SnapshotController snapshotController;
 
     @Autowired
     public Environment env;
@@ -56,7 +60,7 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
         logger.info("Starting CronoManager");
         try {
 
-                CronoManager.getInstance().startScheduler(this.controller);
+                CronoManager.getInstance().startScheduler(this.talentController, this.snapshotController);
         } catch (Exception e) {
             logger.error("Error starting Cronomanager!", e);
             System.exit(1);
@@ -73,10 +77,13 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
         }
         try {
 
-
+            boolean forceUpdate = args != null && args.length >0 &&  "--force-update".equalsIgnoreCase(args[0]);
             logger.info("Checking the the database has entries, if no, populate!");
-            if (controller.getTalentCount() < 5) {// No talents! Populate
-
+            if (talentController.getTalentCount() < 5 || forceUpdate) {// No talents! Populate
+                if(forceUpdate){
+                    logger.info("A refresh was forced! Dropping data and fetching new!");
+                    talentController.deleteAll();
+                }
                 // Null Gen
                 HololiveTalent tokinoSora = new HololiveTalent("UCp6993wxpyDPHUpavwDFqgg", "SoraCh. ときのそらチャンネル", "Tokino Sora");
                 HololiveTalent roboco = new HololiveTalent("UCDqI2jOz0weumE8s7paEk6g", "Roboco Ch. - ロボ子", "Roboco");
@@ -151,7 +158,7 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
                 for (HololiveTalent talent : HololiveTalent.talents) {
                     api.updateTalent(talent);
                     logger.info(talent.toString());
-                    controller.addOrUpdateTalent(talent);
+                    talentController.addOrUpdateTalent(talent);
                 }
             } else {
                 logger.info("Database has entires! No need to refetch.");
@@ -169,7 +176,7 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
 
     private void getAllThumbnails(YoutubeAPI api, Logger logger) {
         try {
-            for (HololiveTalent talent : controller.getAllTalents()) {
+            for (HololiveTalent talent : talentController.getAllTalents()) {
                 logger.info("Getting avatar for talent " + talent.getIdolName());
                 logger.info("Thumbnail URL: " + talent.getThumbnailID());
                 URL url = new URL(talent.getThumbnailID());
@@ -192,7 +199,7 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
                 fos.close();
                 logger.info("Done, setting talents path to file and sleeping 100 ms to not get rate limited lmao");
                 talent.setThumbnailID(thumbnailPath);
-                controller.addOrUpdateTalent(talent);
+                talentController.addOrUpdateTalent(talent);
                 Thread.sleep(100);
             }
         } catch (Exception e) {
