@@ -1,7 +1,7 @@
 package de.wesson.hololivesubscribercount.repository;
 
-import de.wesson.hololivesubscribercount.model.hololive.SubscriberSnapshot;
-import de.wesson.hololivesubscribercount.model.hololive.SubscriberSnapshotPK;
+import de.wesson.hololivesubscribercount.model.hololive.snapshots.SubscriberSnapshot;
+import de.wesson.hololivesubscribercount.model.hololive.snapshots.SubscriberSnapshotPK;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;

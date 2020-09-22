@@ -1,4 +1,4 @@
-package de.wesson.hololivesubscribercount.model.hololive;
+package de.wesson.hololivesubscribercount.model.hololive.snapshots;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

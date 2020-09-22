@@ -2,7 +2,7 @@ package de.wesson.hololivesubscribercount.controller;
 
 
 import de.wesson.hololivesubscribercount.model.hololive.HololiveTalent;
-import de.wesson.hololivesubscribercount.model.hololive.SubscriberSnapshot;
+import de.wesson.hololivesubscribercount.model.hololive.snapshots.SubscriberSnapshot;
 import de.wesson.hololivesubscribercount.model.util.DateUtil;
 import de.wesson.hololivesubscribercount.repository.SubscriberSnapshotRepository;
 import org.slf4j.Logger;
@@ -31,12 +31,12 @@ public class SnapshotController {
     }
 
     @GetMapping("/subhist/before")
-    public List<SubscriberSnapshot> getSubscriberHistoryBefore(@RequestParam(name = "channelID") String channelID, @RequestParam(name = "time") long time) {
+    public List<SubscriberSnapshot> getSubscriberHistoryBefore(@RequestParam(name = "channelID") String channelID, @RequestParam(name = "before") long time) {
         return repository.getAllByChannelIDAndSnapshotTimeBefore(channelID, time);
     }
 
     @GetMapping("/subhist/after")
-    public List<SubscriberSnapshot> getSubscriberHistoryAfter(@RequestParam(name = "channelID") String channelID, @RequestParam(name = "time") long time) {
+    public List<SubscriberSnapshot> getSubscriberHistoryAfter(@RequestParam(name = "channelID") String channelID, @RequestParam(name = "after") long time) {
         return repository.getAllByChannelIDAndSnapshotTimeAfter(channelID, time);
     }
 

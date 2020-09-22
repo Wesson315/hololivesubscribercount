@@ -30,7 +30,7 @@ public final class DateUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(formatRFC3339("2017-09-07T03:02:42Z"));
+        System.out.println(formatRFC3339("2018-08-03T08:32:21Z"));
     }
 
     public static String format(long time) {
