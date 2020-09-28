@@ -174,6 +174,9 @@ public class HololivesubscribercountApplication implements CommandLineRunner {
 
     }
 
+
+
+
     private void getAllThumbnails(YoutubeAPI api, Logger logger) {
         try {
             for (HololiveTalent talent : talentController.getAllTalents()) {
