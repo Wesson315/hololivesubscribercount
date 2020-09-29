@@ -4,8 +4,8 @@
 
 The frontend of this website is written with <a href="https://angular.io/">Angular</a> in Typescript<br>
 The backend is a <a href="https://spring.io">Spring web server</a>. <br>
-It currently tracks 42 Hololive members, called "Talents".<br>
-The storage is realized through a file based <a href="https://www.h2database.com/html/main.html">H2-Database</a>
+It currently tracks 52 Hololive members, called "Talents".<br>
+The storage is realized through a Mongo Database
 
 # Hololive
 Hololive Production (ホロライブプロダクション Hororaibu Purodakushon), or simply known as hololive (ホロライブ), is an agency of Virtual YouTubers created by Cover Corp.<br>
@@ -24,7 +24,6 @@ Hololive-EN - The English branch<br>
 
 **Hololive-CH** - No members of the chinese branch, except for Civia, are currently being tracked due to them exclusively broadcasting on <a href="https://www.bilibili.com">bilibili</a>.<br>
 
-**Holostars** - The japanese male branch of Hololive, called "Holostars", is currently not being tracked. This is due to my laziness and will be addressed in the near future!<br>
 
 # Additional Notes
 This is my very first angular and spring project, and my first publicly available web project.<br>
