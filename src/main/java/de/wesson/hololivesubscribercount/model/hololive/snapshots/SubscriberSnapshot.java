@@ -4,27 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 @Entity
 @Data
-@IdClass(SubscriberSnapshotPK.class)
+@IdClass(SubscriberSnapshotPK.class)*/
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class SubscriberSnapshot {
-    @Id
+    // @Id
     private String channelID;
-    @Id
+    // @Id
     private long snapshotTime;
     private long subscriberCount;
-
-
-
-
-
-
 
 
 }

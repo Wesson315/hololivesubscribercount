@@ -39,3 +39,6 @@ build/
 src/main/resources/keystore.p12
 data
 logs/
+/src/main/resources/application.properties.backup
+
+src/main/java/de/wesson/hololivesubscribercount/MongoConfiguration.java

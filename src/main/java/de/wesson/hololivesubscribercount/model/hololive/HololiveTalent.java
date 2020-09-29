@@ -2,9 +2,8 @@ package de.wesson.hololivesubscribercount.model.hololive;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.ArrayList;
 
 
@@ -13,16 +12,19 @@ import java.util.ArrayList;
  **/
 @Data
 @NoArgsConstructor
-@Entity
+//@Entity
 public class HololiveTalent {
 
 
-    @Id
+   // @Id
+    @MongoId
     private String channelID;
     private String channelName;
     private String idolName;
     private String thumbnailID;
     private String creationDate;
+    private String twitterLink;
+    private String wikiLink;
     private long subscriberCount;
     private long viewCount;
     private long videoCount;
@@ -30,10 +32,12 @@ public class HololiveTalent {
 
     public static ArrayList<HololiveTalent> talents = new ArrayList<>();
 
-    public HololiveTalent(String channelID, String channelName, String idolName) {
+    public HololiveTalent(String channelID, String channelName, String idolName, String twitterLink, String wikiLink) {
         this.channelID = channelID;
         this.channelName = channelName;
         this.idolName = idolName;
+        this.twitterLink = twitterLink;
+        this.wikiLink = wikiLink;
         if(channelID.startsWith("U"))
         talents.add(this);
     }

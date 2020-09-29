@@ -21,7 +21,7 @@ public class TalentController {
     @Autowired
     private HololiveChannelRespository repository;
 
-    @GetMapping("/talentDetail/{channelid}")
+    @GetMapping("/api/talents/talentDetail/{channelid}")
     public HololiveTalent getTalent(@PathVariable(name = "channelid") String channelid) {
         return repository.findById(channelid).orElse(new HololiveTalent());
     }
@@ -30,12 +30,12 @@ public class TalentController {
         repository.save(channel);
     }
 
-    @GetMapping("/talents")
+    @GetMapping("/api/talents/talents")
     public List<HololiveTalent> getAllTalents() {
         return (List<HololiveTalent>)repository.findAll(Sort.by(Sort.Direction.DESC,"subscriberCount"));
     }
 
-    @GetMapping("/findByName/{idolName}")
+    @GetMapping("/api/talents/findByName/{idolName}")
     public List<HololiveTalent> findByName(@PathVariable(name="idolName") String idolName){
         return repository.findAllByIdolNameLike(idolName);
     }
@@ -44,7 +44,7 @@ public class TalentController {
         repository.deleteAll();
     }
 
-    @GetMapping("/getTalentCount")
+    @GetMapping("/api/talents/getTalentCount")
     public long getTalentCount(){
         return repository.count();
     }

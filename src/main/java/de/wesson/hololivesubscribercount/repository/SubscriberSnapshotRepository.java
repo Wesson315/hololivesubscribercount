@@ -2,11 +2,12 @@ package de.wesson.hololivesubscribercount.repository;
 
 import de.wesson.hololivesubscribercount.model.hololive.snapshots.SubscriberSnapshot;
 import de.wesson.hololivesubscribercount.model.hololive.snapshots.SubscriberSnapshotPK;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-public interface SubscriberSnapshotRepository extends PagingAndSortingRepository<SubscriberSnapshot, SubscriberSnapshotPK> {
+@Repository
+public interface SubscriberSnapshotRepository extends MongoRepository<SubscriberSnapshot, SubscriberSnapshotPK> {
 
     List<SubscriberSnapshot> getAllByChannelID(String channelID);
 

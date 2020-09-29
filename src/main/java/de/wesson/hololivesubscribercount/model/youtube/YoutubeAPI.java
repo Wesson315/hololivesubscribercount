@@ -44,7 +44,10 @@ public class YoutubeAPI {
                 long viewCount = Long.parseLong(channel.getStatistics().getViewCount());
                 long subCount = Long.parseLong(channel.getStatistics().getSubscriberCount());
                 String publishedAt = DateUtil.formatRFC3339((channel.getSnippet().getPublishedAt()));
+                // Comment when refetching avatars
                 talent.setThumbnailID(getThumbnailPath(talent.getChannelID()));
+                // Uncomment when fetching avatars
+               // talent.setThumbnailID(thumbnailID);
                 talent.setVideoCount(videoCount);
                 talent.setViewCount(viewCount);
                 talent.setCreationDate(publishedAt);

@@ -8,16 +8,14 @@ import de.wesson.hololivesubscribercount.repository.SubscriberSnapshotRepository
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/api/subhist/*")
 public class SnapshotController {
 
     private Logger logger = LoggerFactory.getLogger(SnapshotController.class);
@@ -25,22 +23,22 @@ public class SnapshotController {
     @Autowired
     private SubscriberSnapshotRepository repository;
 
-    @GetMapping("/subhist")
+    @GetMapping("/api/subhist/hist")
     public List<SubscriberSnapshot> getSubscriberHistory(@RequestParam(name = "channelID") String channelID) {
         return repository.getAllByChannelID(channelID);
     }
 
-    @GetMapping("/subhist/before")
+    @GetMapping("/api/subhist/before")
     public List<SubscriberSnapshot> getSubscriberHistoryBefore(@RequestParam(name = "channelID") String channelID, @RequestParam(name = "before") long time) {
         return repository.getAllByChannelIDAndSnapshotTimeBefore(channelID, time);
     }
 
-    @GetMapping("/subhist/after")
+    @GetMapping("/api/subhist/after")
     public List<SubscriberSnapshot> getSubscriberHistoryAfter(@RequestParam(name = "channelID") String channelID, @RequestParam(name = "after") long time) {
         return repository.getAllByChannelIDAndSnapshotTimeAfter(channelID, time);
     }
 
-    @GetMapping("/subhist/between")
+    @GetMapping("/api/subhist/between")
     public List<SubscriberSnapshot> getSubscriberHistoryBetween(@RequestParam(name = "channelID") String channelID, @RequestParam(name = "from") long from, @RequestParam(name = "to") long to) {
         return repository.getAllByChannelIDAndSnapshotTimeBetween(channelID, from, to);
     }
