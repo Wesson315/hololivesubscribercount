@@ -14,12 +14,12 @@ As of November 2019, the total number of subscribers for the VTubers on YouTube 
 
 Source: <a href="https://virtualyoutuber.fandom.com/wiki/Hololive">Virtual VTuber Fandom Wiki</a> (13/9/2020)<br>
 
-The 42 members tracked are members of the groups<br>
+The 52 members tracked are members of the groups<br>
 
 Hololive - The "main" Japanese branch<br>
 Hololive-ID - The Indonesian branch<br>
 Hololive-EN - The English branch<br>
-
+Holostars   - The Japanese male branch<br>
 ##### Currently Missing
 
 **Hololive-CH** - No members of the chinese branch, except for Civia, are currently being tracked due to them exclusively broadcasting on <a href="https://www.bilibili.com">bilibili</a>.<br>
